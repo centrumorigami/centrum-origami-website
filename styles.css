@@ -1,629 +1,365 @@
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  --bg: #f5f0e8;
-  --panel: #fffaf3;
-  --panel-strong: #f0e4d4;
-  --card: #f9f4ee;
-  --text: #1e1a17;
-  --muted: #534d49;
-  --line: rgba(30, 26, 23, 0.12);
-  --accent: #b66d45;
-  --accent-deep: #8a4d2c;
-  --sage: #c6d1c0;
-  --shadow: 0 20px 50px rgba(28, 22, 18, 0.08);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: "Manrope", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-.container {
-  width: min(1160px, calc(100% - 2rem));
-  margin: 0 auto;
-}
-
-.section {
-  padding: 110px 0;
-}
-
-.alt-bg {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.eyebrow {
-  margin: 0 0 1rem;
-  color: var(--accent-deep);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  font-size: clamp(2.8rem, 5vw, 5rem);
-  line-height: 1.05;
-  letter-spacing: -0.06em;
-  margin-bottom: 1.2rem;
-}
-
-h2 {
-  font-size: clamp(2.1rem, 3vw, 3.2rem);
-  line-height: 1.12;
-  letter-spacing: -0.05em;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-size: 1.4rem;
-  line-height: 1.2;
-  margin-bottom: 0.8rem;
-}
-
-p {
-  color: var(--muted);
-  font-size: 1.02rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  min-height: 52px;
-  padding: 0.9rem 1.5rem;
-  border-radius: 999px;
-  font-weight: 800;
-  border: 1px solid transparent;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-}
-
-.btn-primary {
-  background: var(--text);
-  color: #fff;
-  box-shadow: 0 18px 30px rgba(30, 26, 23, 0.12);
-}
-
-.btn-secondary {
-  background: transparent;
-  border-color: var(--line);
-  color: var(--text);
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  backdrop-filter: blur(18px);
-  background: rgba(245, 240, 232, 0.72);
-  border-bottom: 1px solid rgba(30, 26, 23, 0.04);
-}
-
-.nav-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 84px;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-weight: 800;
-  letter-spacing: -0.05em;
-}
-
-.brand-mark {
-  width: 42px;
-  height: 42px;
-  padding: 0.45rem;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--panel-strong), #fff);
-  border: 1px solid rgba(30, 26, 23, 0.08);
-}
-
-.brand-text {
-  font-size: 1.1rem;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  color: var(--muted);
-  font-size: 0.96rem;
-  font-weight: 600;
-}
-
-.main-nav a {
-  position: relative;
-}
-
-.main-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.35rem;
-  width: 100%;
-  height: 2px;
-  background: var(--text);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.2s ease;
-}
-
-.main-nav a:hover::after,
-.main-nav a:focus-visible::after {
-  transform: scaleX(1);
-}
-
-.nav-cta {
-  margin-left: 0.5rem;
-}
-
-.menu-toggle {
-  display: none;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 0.8rem 0.7rem;
-  cursor: pointer;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--text);
-  border-radius: 10px;
-  margin: 0.24rem 0;
-}
-
-.hero {
-  padding: 72px 0 60px;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: 2rem;
-}
-
-.hero-copy {
-  max-width: 620px;
-}
-
-.lead {
-  font-size: 1.15rem;
-  max-width: 540px;
-  margin-bottom: 2rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.8rem;
-}
-
-.hero-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1.4rem;
-  color: var(--text);
-  font-weight: 600;
-}
-
-.hero-list li {
-  position: relative;
-  padding-left: 1.2rem;
-}
-
-.hero-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.45rem;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.hero-visual {
-  display: flex;
-  justify-content: center;
-}
-
-.dashboard-card {
-  width: min(100%, 520px);
-  background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.15));
-  border: 1px solid rgba(30, 26, 23, 0.08);
-  border-radius: 30px;
-  padding: 1.2rem;
-  box-shadow: var(--shadow);
-}
-
-.panel-top {
-  display: flex;
-  gap: 0.55rem;
-  padding: 0.5rem 0 1rem;
-}
-
-.panel-top span {
-  display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(30, 26, 23, 0.2);
-}
-
-.mockup-window {
-  background: rgba(255, 250, 243, 0.9);
-  border: 1px solid rgba(30, 26, 23, 0.08);
-  border-radius: 24px;
-  padding: 1.2rem;
-}
-
-.mockup-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-.mockup-pill {
-  background: rgba(182, 109, 69, 0.15);
-  color: var(--accent-deep);
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 0.5rem 0.8rem;
-  text-transform: uppercase;
-}
-
-.pill-light {
-  background: rgba(198, 209, 192, 0.38);
-  color: #394336;
-}
-
-.mockup-content {
-  display: grid;
-  gap: 1.2rem;
-}
-
-.mockup-copy {
-  background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(240,228,212,0.8));
-  border-radius: 18px;
-  padding: 1.2rem;
-  border: 1px solid rgba(30, 26, 23, 0.05);
-}
-
-.mockup-copy h3 {
-  margin-bottom: 0.6rem;
-}
-
-.stat-blocks {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.stat-blocks div {
-  background: linear-gradient(135deg, #f5eee6, #fff);
-  border-radius: 18px;
-  padding: 1rem;
-  border: 1px solid rgba(30, 26, 23, 0.06);
-}
-
-.stat-blocks strong {
-  display: block;
-  font-size: 1.8rem;
-  letter-spacing: -0.06em;
-}
-
-.stat-blocks span {
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-.logo-bar {
-  padding: 0 0 18px;
-}
-
-.logo-bar-inner {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.8rem;
-  padding: 1.1rem 1.4rem;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(255,255,255,0.35);
-  text-align: center;
-  font-weight: 800;
-  color: rgba(30, 26, 23, 0.7);
-}
-
-.two-col {
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 2.5rem;
-  align-items: start;
-}
-
-.section-heading {
-  max-width: 760px;
-  margin-bottom: 2.2rem;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-
-.info-card {
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 1.5rem;
-  box-shadow: 0 18px 28px rgba(30,26,23,0.04);
-}
-
-.icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  background: rgba(182, 109, 69, 0.12);
-  color: var(--accent-deep);
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.2rem;
-}
-
-.step {
-  position: relative;
-  background: rgba(255,255,255,0.52);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 1.5rem;
-}
-
-.step span {
-  display: inline-block;
-  margin-bottom: 0.8rem;
-  color: var(--accent-deep);
-  font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-}
-
-.showcase {
-  display: grid;
-  grid-template-columns: 1.2fr 0.85fr 0.85fr;
-  gap: 1.25rem;
-}
-
-.project-card {
-  padding: 1.5rem;
-  background: rgba(255,255,255,0.52);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-}
-
-.project-card--large {
-  min-height: 380px;
-  background: linear-gradient(135deg, rgba(247,235,221,0.72), rgba(255,255,255,0.6));
-}
-
-.project-topline {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-deep);
-}
-
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-
-blockquote {
-  margin: 0;
-  padding: 1.8rem;
-  background: rgba(255,255,255,0.55);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  font-size: 1.06rem;
-  line-height: 1.7;
-  color: var(--text);
-}
-
-blockquote footer {
-  margin-top: 1.2rem;
-  color: var(--muted);
-  font-weight: 700;
-}
-
-.cta-band {
-  padding: 0 0 100px;
-}
-
-.cta-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  background: linear-gradient(135deg, #1f1b18, #382d27);
-  border-radius: 28px;
-  padding: clamp(1.5rem, 3vw, 2.4rem);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.cta-inner h2 {
-  margin-bottom: 0;
-  color: #fff;
-}
-
-.cta-inner .eyebrow {
-  color: #f0d1b6;
-}
-
-.site-footer {
-  padding: 0 0 2rem;
-}
-
-.footer-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 2rem;
-  padding: 2rem 0 1rem;
-  border-top: 1px solid rgba(30, 26, 23, 0.08);
-}
-
-.footer-brand {
-  margin-bottom: 1rem;
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.copyright {
-  color: var(--muted);
-  font-size: 0.92rem;
-  padding-top: 0.3rem;
-}
-
-@media (max-width: 980px) {
-  .card-grid,
-  .steps,
-  .logo-bar-inner,
-  .testimonial-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .hero-grid,
-  .two-col,
-  .showcase {
-    grid-template-columns: 1fr;
-  }
-
-  .main-nav {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: inline-block;
-  }
-
-  .site-header.is-open .main-nav {
-    display: flex;
-    position: absolute;
-    left: 1rem;
-    right: 1rem;
-    top: 84px;
-    padding: 1rem;
-    flex-direction: column;
-    align-items: flex-start;
-    background: rgba(255,250,243,0.96);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    box-shadow: var(--shadow);
-  }
-
-  .site-header.is-open .nav-wrap {
-    position: relative;
-  }
-}
-
-@media (max-width: 640px) {
-  .card-grid,
-  .steps,
-  .logo-bar-inner,
-  .testimonial-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-cta {
-    display: none;
-  }
-
-  .hero {
-    padding-top: 48px;
-  }
-
-  .section {
-    padding: 80px 0;
-  }
-
-  .cta-inner,
-  .footer-wrap {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Centrum Origami — marka, web design, strategia komunikacji i treści, które pomagają firmom rosnąć online."
+    />
+    <title>Centrum Origami | Kreatywność w każdym zagięciu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="#top" aria-label="Centrum Origami">
+          <span class="brand-mark">
+            <img src="assets/logo.svg" alt="Centrum Origami logo" />
+          </span>
+          <span class="brand-text">Centrum Origami</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Główne menu">
+          <a href="#o-nas">O nas</a>
+          <a href="#dlaczego-my">Dlaczego my</a>
+          <a href="#oferta">Oferta</a>
+          <a href="#proces">Proces</a>
+          <a href="#realizacje">Realizacje</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+
+        <a class="btn btn-primary nav-cta" href="#kontakt">Umów konsultację</a>
+        <button class="menu-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Nowoczesna strategia marki i web</p>
+            <h1>Kreatywność w każdym zagięciu.</h1>
+            <p class="lead">
+              Pomagamy firmom budować rozpoznawalną markę, nowoczesną stronę i przekaz, który
+              zwiększa zaufanie, wzmacnia pozycję oraz wspiera sprzedaż.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#kontakt">Zamów projekt</a>
+              <a class="btn btn-secondary" href="#oferta">Zobacz ofertę</a>
+            </div>
+            <ul class="hero-list" aria-label="Najważniejsze zalety">
+              <li>Branding i komunikacja premium</li>
+              <li>Strony zaprojektowane pod konwersję</li>
+              <li>Treści, które budują zaufanie</li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-label="Mockup strony">
+            <div class="dashboard-card">
+              <div class="panel-top">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="mockup-window">
+                <div class="mockup-header">
+                  <div class="mockup-pill pill-light">Brand</div>
+                  <div class="mockup-pill">Growth</div>
+                </div>
+                <div class="mockup-content">
+                  <div class="mockup-copy">
+                    <h3>Nowa jakość prezentacji marki</h3>
+                    <p>Struktura, język i projekt, które zamieniają zainteresowanie w konkretne decyzje.</p>
+                  </div>
+                  <div class="stat-blocks">
+                    <div>
+                      <strong>+180%</strong>
+                      <span>zaangażowania</span>
+                    </div>
+                    <div>
+                      <strong>3x</strong>
+                      <span>wzrost leadów</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="logo-bar">
+        <div class="container logo-bar-inner">
+          <span>Brand Strategy</span>
+          <span>UX / UI</span>
+          <span>Web Design</span>
+          <span>Content Marketing</span>
+          <span>SEO Copy</span>
+        </div>
+      </section>
+
+      <section id="o-nas" class="section">
+        <div class="container intro-grid">
+          <div>
+            <p class="eyebrow">O nas</p>
+            <h2>Centrum Origami łączy estetykę, strategię i realne efekty biznesowe.</h2>
+          </div>
+          <div>
+            <p>
+              Jesteśmy zespołem, który buduje marki i strony nie tylko dla wyglądu, ale przede wszystkim dla
+              zrozumienia, wiarygodności i wzrostu sprzedaży. Każdy projekt zaczynamy od analizy, odbiorców,
+              rynku i potrzeb klienta, a kończymy rozwiązaniem, które wspiera właściwe decyzje biznesowe.
+            </p>
+            <p>
+              Dla nas dobra marka to nie tylko piękny wizerunek — to komunikacja, która działa i pomaga firmie
+              wyrażać wartość w sposób jasny, modern i przekonujący.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="dlaczego-my" class="section alt-bg">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Dlaczego my</p>
+            <h2>Tworzymy rozwiązania, które pomagają firmom wyróżniać się i zyskiwać klientów.</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-number">01</div>
+              <h3>Strategia ponad estetyką</h3>
+              <p>Każdy element projektu wynika z celów biznesowych, nie tylko z trendów. Nasze decyzje są przede wszystkim skuteczne.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-number">02</div>
+              <h3>Komunikacja, która buduje zaufanie</h3>
+              <p>Tworzymy język marki, który jest prosty, spójny i łatwy do zapamiętania, zarówno online, jak i offline.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-number">03</div>
+              <h3>Projekt pod konwersję</h3>
+              <p>Layout, sekcje, CTA i struktura treści są zaprojektowane tak, aby wspierać decyzję klienta i zwiększać wyniki.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-number">04</div>
+              <h3>Indywidualne podejście</h3>
+              <p>Każdy projekt jest dopasowany do branży, odbiorców i realnego kontekstu działania firmy.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="oferta" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Oferta</p>
+            <h2>Kompleksowe wsparcie od strategii marki po wdrożenie.</h2>
+          </div>
+
+          <div class="card-grid">
+            <article class="info-card">
+              <div class="icon">01</div>
+              <h3>Branding i identyfikacja</h3>
+              <p>Tworzymy spójny wizerunek marki: język komunikacji, nowe kierunki wizualne, wartości i sposób prezentacji firmy.</p>
+            </article>
+            <article class="info-card">
+              <div class="icon">02</div>
+              <h3>Strony internetowe</h3>
+              <p>Projektujemy nowoczesne strony firmowe, landing page'y i portfolio z naciskiem na estetykę, UX i skuteczność.</p>
+            </article>
+            <article class="info-card">
+              <div class="icon">03</div>
+              <h3>Treści marketingowe</h3>
+              <p>Budujemy opisy, sekcje sprzedażowe, komunikację i treści, które pomagają klientowi łatwiej podjąć decyzję.</p>
+            </article>
+            <article class="info-card">
+              <div class="icon">04</div>
+              <h3>SEO i widoczność</h3>
+              <p>Optymalizujemy strukturę, treść i komunikację pod kątem wyszukiwania oraz rozpoznawalności w sieci.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="proces" class="section alt-bg">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Proces</p>
+            <h2>Przejrzysty i skuteczny model pracy od pierwszej rozmowy do wdrożenia.</h2>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <span>01</span>
+              <h3>Discovery</h3>
+              <p>Rozmawiamy o marce, celach, odbiorcach i potrzebach biznesowych, aby zbudować właściwy fundament.</p>
+            </div>
+            <div class="step">
+              <span>02</span>
+              <h3>Strategia</h3>
+              <p>Definiujemy język marki, przywódzący przekaz, hierarchię treści oraz kierunek rozwoju komunikacji.</p>
+            </div>
+            <div class="step">
+              <span>03</span>
+              <h3>Projekt</h3>
+              <p>Tworzymy UX/UI, przyciągający wygląd i logiczną strukturę strony, dopasowaną do sprzedaży.</p>
+            </div>
+            <div class="step">
+              <span>04</span>
+              <h3>Wdrożenie</h3>
+              <p>Publikacja, optymalizacja, poprawki i zgodność z celem biznesowym — od pierwszych wejść do finalnego efektu.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="realizacje" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Realizacje</p>
+            <h2>Przykłady projektów, które łączą estetykę z praktycznym działaniem.</h2>
+          </div>
+
+          <div class="showcase">
+            <article class="project-card project-card--large">
+              <div class="project-topline">
+                <span>Brand + Web</span>
+                <span>Firma premium</span>
+              </div>
+              <h3>Nowoczesna marka, która buduje prestiż i wspiera sprzedaż.</h3>
+              <p>Przebudowa komunikacji i strony, która znacząco poprawiła klarowność oferty i odbiór marki.</p>
+            </article>
+
+            <article class="project-card">
+              <div class="project-topline">
+                <span>Landing page</span>
+                <span>Usługi</span>
+              </div>
+              <h3>Strona sprzedażowa z mocnym CTA i prostym procesem działania.</h3>
+            </article>
+
+            <article class="project-card">
+              <div class="project-topline">
+                <span>Content</span>
+                <span>Rozwój</span>
+              </div>
+              <h3>Komunikacja, która wyjaśnia ofertę i ułatwia decyzję klienta.</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section metrics">
+        <div class="container metrics-grid">
+          <div class="metric">
+            <strong>5+</strong>
+            <span>lat doświadczenia</span>
+          </div>
+          <div class="metric">
+            <strong>30+</strong>
+            <span>zrealizowanych projektów</span>
+          </div>
+          <div class="metric">
+            <strong>100%</strong>
+            <span>indywidualne podejście</span>
+          </div>
+          <div class="metric">
+            <strong>24/7</strong>
+            <span>gotowość do współpracy</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonials" id="opinie">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Opinie</p>
+            <h2>Klienci cenią przejrzystość, profesjonalizm i skuteczność komunikacji.</h2>
+          </div>
+
+          <div class="testimonial-grid">
+            <blockquote>
+              „Dzięki Centrum Origami nasza marka stała się bardziej dojrzała, a strona zaczęła wspierać sprzedaż zamiast tylko wyglądać dobrze.”
+              <footer>— Anna K., właścicielka firmy usługowej</footer>
+            </blockquote>
+            <blockquote>
+              „Zespół zrozumiał nie tylko nasz biznes, ale też sposób, w jaki chcemy być postrzegani przez klientów. To był świetny wybór.”
+              <footer>— Michał P., menedżer marki</footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" aria-label="Najczęstsze pytania">
+        <div class="container faq-wrap">
+          <div class="faq-copy">
+            <p class="eyebrow">FAQ</p>
+            <h2>Najczęstsze pytania o współpracy.</h2>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>Czym zajmuje się Centrum Origami?</summary>
+              <p>Pomagamy firmom budować markę, komunikację i strony internetowe, które wspierają rozwój i sprzedaż.</p>
+            </details>
+            <details>
+              <summary>Jak wygląda współpraca?</summary>
+              <p>Rozpoczynamy od analizy potrzeb, następnie tworzymy strategię, projekt i treści, a na końcu wdrażamy finalne rozwiązanie.</p>
+            </details>
+            <details>
+              <summary>Czy możecie pracować nad samą stroną lub samym brandingiem?</summary>
+              <p>Tak. Możemy wspierać zarówno stronę internetową, jak i cały proces budowania tożsamości marki lub jej konkretny element.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band" id="kontakt">
+        <div class="container cta-inner">
+          <div>
+            <p class="eyebrow">Zacznijmy</p>
+            <h2>Twoja marka zasługuje na stronę, która buduje zaufanie i napędza wyniki.</h2>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="mailto:hello@centrumorigami.pl">hello@centrumorigami.pl</a>
+            <a class="btn btn-secondary btn-light" href="tel:+48500123456">+48 500 123 456</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <div>
+          <a class="brand footer-brand" href="#top">
+            <span class="brand-mark">
+              <img src="assets/logo.svg" alt="Centrum Origami logo" />
+            </span>
+            <span class="brand-text">Centrum Origami</span>
+          </a>
+          <p>Tworzymy marki i strony, które budują zaufanie, wyróżniają firmę i wspierają rozwój biznesu.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#o-nas">O nas</a>
+          <a href="#oferta">Oferta</a>
+          <a href="#proces">Proces</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+      </div>
+      <div class="container copyright">
+        <span>© <span id="year"></span> Centrum Origami</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
